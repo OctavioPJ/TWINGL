@@ -1,0 +1,7 @@
+^^ define 61 channels with 28 axial elements
+^^ sec 4 *
+ 44 ( 1 4.6188 ) /
+ 22 ( 1 9.2376 ) /
+ 2 10.0 *
+ 28 ( 1 5.0 )*
+ 2 10.0

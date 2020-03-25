@@ -1,0 +1,5 @@
+13/11/2019 18:48:45.73 
+	hay problemas respecto a energy times fission.
+	la potencia se calcula directamente con la cantidad de producciones y no toma en cuenta la seccion eficaz de fision por la energia
+	cambiar este valor para una nueva biblioteca
+	y ya que estamos... armar una nueva biblioteca con los valores cambiados de nu_fision

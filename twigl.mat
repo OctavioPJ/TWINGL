@@ -1,0 +1,6 @@
+^^ LIBRARY = twigl
+^^ SEC 8  GROUP from library
+^^ FUEL ELEMENT =  1      KEY=REG001
+^^ FUEL ELEMENT =  2      KEY=REG002 
+^^ FUEL ELEMENT =  3      KEY=REG003 
+^^ fission spec from library

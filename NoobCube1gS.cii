@@ -1,0 +1,14 @@
+-m:7000000
+CAREM 25.   MAR 2014.
+ pruebas nucleo de equilibrio simetria 1
+^^ sec 1 NGC 2 0 itmx 1 999 itmx 19 to 24 999 NGC 10 -5
+^^ sec 3 geo XYZ black abs 1999 EPI 1 1.00E-08
+^^ file noob_cube.sc4
+^^ file noob_cube.sc5
+^^ file noob_cube1g.mat
+^^ file noob_cube.sc26
+999
+^^ Print Mesh Maps Always
+^^ set time 0
+^^ calculate
+^^ end run

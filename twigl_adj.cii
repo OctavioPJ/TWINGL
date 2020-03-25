@@ -1,0 +1,17 @@
+-m:7000000
+TWIGL BENCHMARK
+ benchmark numerico
+^^ sec 1 NGC 2 0 NGC 12 1 itmx 1 900 itmx 19 to 24 999
+^^ sec 3 geo XY black abs 10 EPI 1 1.00E-8
+*
+******************* geometrical definition ************************
+^^ file twigl_full.sc4
+^^ file twigl_full.sc5
+********************* beginning of material data ***********************
+^^ file twigl.mat
+999
+^^ write log data on file twigl_adj.plt
+^^ print meshmap always
+^^ set time 0
+^^ calculate
+^^ end run

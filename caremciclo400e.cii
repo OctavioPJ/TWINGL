@@ -1,0 +1,355 @@
+-m:7000000
+TWIGL BENCHMARK
+ benchmark numerico
+^^ sec 1 NGC 2 0 itmx 1 900 itmx 19 to 24 999
+^^ sec 3 geo XY black abs 1999 power 100
+*
+******************* geometrical definition ************************
+^^ file carems128.sc4
+^^ file precarems128.sc5
+********************* beginning of material data ***********************
+^^ file carems1285.mat
+999
+^^ pseudo times=0 / every 10 until  30.0 / every 30 until 180.0 / every 10 until  210.0 / every 30 until 240.0 / every 10 until  270.0 / every 30 until 390.0 / every 10 until  400.0
+^^ database update ON FILE carem.cdb
+^^ Write Log Data ON FILE caremS1285.log
+*
+^^ execute thermit.exe nucleos1285
+^^ execute copy nucleos1285.dmp carem.dmp > nul
+^^ execute IF EXIST caremS128.log del caremS1285.log
+*
+* Inicializa   Calculo de flujos sin barras
+*
+^^ set time 0
+* ^^ calculate
+*
+* Calculo de flujos sin barras  con la barra 1 con 7 trozos
+*
+* ^^ move control rod 1 7
+* ^^ calculate
+* ^^ output citation off
+*
+*                                                            Loop busqueda de nucleo de equilibrio SIn Th y BC fijas.
+*                                                            ********************************************************
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ set time 10                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 20                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 30                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 60                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 90                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 120                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 150                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 180
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ set time 190
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ set time 200                                                       
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 210                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 240                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 250                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 260                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 270                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 300                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 330                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 360                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 390                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+^^ set time 400                                                        
+^^ calculate
+^^ DATABASE UPDATE NOW
+^^ output citation off
+********************************************************
+*
+*                                                            Crea todos los estados desde EOC a BOC (sin quemar)
+*                                                            ***************************************************
+* ^^ call crea_estados at [times]
+*
+* ^^ repeat 2 cycles
+* ^^ set time 0
+* ^^ calculate at [times]
+* ^^ call fuel_management
+* ^^ DATABASE UPDATE NOW
+* ^^ end repeat
+*
+^^ call create_restart AT DATABASE
+^^ read state at time 0.0 from database
+*
+*                                                            Loop busqueda de nucleo de equilibrio Critico y con Th
+*                                                            ******************************************************
+^^ repeat 10 cycles
+^^ set time 0
+^^ call calculo(1.0)  at [times]
+^^ call fuel_management
+^^ end repeat
+*                                                            Guarda Flujos y Densidad de potencia por malla.
+^^ Print Mesh Maps Always
+^^ call save_mesh AT DATABASE
+*
+*                                                            Calcula la criticidad final para cada estado del ciclo
+*
+^^ Write Log Data ON FILE rcri_op_S1285.plt
+^^ database update ON FILE carem-ok.cdb
+^^ call rcri at sorted database carem.cdb
+*
+*                                                            Calcula el exceso de reactividad para cada estado del ciclo
+*
+^^ Write Log Data ON FILE rexc_op_S1285.plt
+^^ call rmax at sorted database carem.cdb
+*
+^^ END RUN
+*
+* PROCEDIMIENTOS
+*
+*
+^^ procedure crea_estados:
+^^ set time %TIME
+^^ DATABASE UPDATE NOW
+^^ END PROCEDURE
+*
+*
+^^ procedure create_restart:
+^^ backup restart file $DIR_TIME.rst
+^^ end procedure
+*
+*                                Procedimiento de loop neutronico-termohidraulico con criticidad por barras de control.
+^^ procedure calculo(ERRPWR):
+^^ BURN TO %TIME days /no output
+^^ set time %TIME
+^^ read control rod at time %TIME from database carem.cdb
+^^ read fuel temp at time %TIME from database carem.cdb
+^^ read cool temp at time %TIME from database carem.cdb
+^^ read cool dens at time %TIME from database carem.cdb
+^^ read power dens at time %TIME from database carem.cdb
+^^ restart from file $DIR_TIME.rst
+*
+*                     Loop Thermohidraulico
+^^ REPEAT 4 TIMES
+^^ BREAK CALL BAJA(6) WHEN REACTIVITY IS GREATER THAN +2000 /
+         CALL BAJA(3) WHEN REACTIVITY IS GREATER THAN +1000 /
+         CALL BAJA(2) WHEN REACTIVITY IS GREATER THAN +750 /
+         CALL BAJA(1) WHEN REACTIVITY IS GREATER THAN +105  /
+         CALL SUBI(3) WHEN REACTIVITY IS LOWER   THAN -1000 /
+         CALL SUBI(2) WHEN REACTIVITY IS LOWER   THAN -750 /
+         CALL SUBI(1) WHEN REACTIVITY IS LOWER   THAN -105  /
+         CONTINUE AT LoopThSiConvergio WHEN ERROR POWER DENSITY is LOWER THAN %ERRPWR
+^^ Calculate
+*
+*                     Loop Criticidad por barras de control.
+^^ BREAK CALL BAJA(6) WHEN REACTIVITY IS GREATER THAN +2000 /
+         CALL BAJA(3) WHEN REACTIVITY IS GREATER THAN +1000 /
+         CALL BAJA(2) WHEN REACTIVITY IS GREATER THAN +750 /
+         CALL BAJA(1) WHEN REACTIVITY IS GREATER THAN +105  /
+         CALL SUBI(3) WHEN REACTIVITY IS LOWER   THAN -1000 /
+         CALL SUBI(2) WHEN REACTIVITY IS LOWER   THAN -750 /
+         CALL SUBI(1) WHEN REACTIVITY IS LOWER   THAN -105  /
+         CONTINUE AT LoopThNoConvergio WHEN REACTIVITY IS GREATER THAN -106
+         
+*
+^^ REPEAT 10 TIMES
+^^ Calculate
+^^ END REPEAT
+*                     End Loop Criticidad por barras de control.
+^^ label LoopThNoConvergio:
+^^ CALL LoopTh
+^^ END REPEAT
+*
+^^ label LoopThSiConvergio:
+^^ DATABASE UPDATE NOW
+^^ output TIME / control rod position / burnup / power density / fuel temperature / coolant temperature / coolant densities
+^^ END PROCEDURE
+*                     End Loop Thermohidraulico
+*
+^^ PROCEDURE LoopTh:
+^^ open script loop.bat
+@echo off
+echo Time: %1
+timeout /T -1
+echo * Loop TH at %1 >> carem_S1.log
+echo   Loop TH at %1 >> [filename].cio
+prthr.exe %1
+thermit.exe carem.thi -R:carem.dmp
+prcit.exe %1
+^^ close script
+^^ execute loop.bat $(F12.6)TIME
+^^ read state at present time from database carem.cdb
+^^ END PROCEDURE
+*
+*
+^^ procedure save_mesh:
+^^ restart from file $DIR_TIME.rst
+^^ Calculate
+^^ END PROCEDURE
+*
+*                           Gestión de Combustible
+*                           **********************
+^^ Procedure fuel_management:
+^^ set time 0
+^^ move  fuel element *
+   1 fresh     1 /
+  21 fresh 21  5    / 27 fresh 27  7 / 33 fresh 33  3    /
+   2 fresh  2 30    /  4 fresh  4 36 /  6 fresh  6 24    /
+  52 channel=  9 52 /  9 fresh  9    / 60 channel= 13 60 / 13 fresh 13 / 44 channel= 17 44 / 17 fresh 17 /
+  54 channel= 10 54 / 10 fresh 10    / 38 channel= 14 38 / 14 fresh 14 / 46 channel= 18 46 / 18 fresh 18 /
+  56 channel= 11 56 / 11 fresh 11    / 40 channel= 15 40 / 15 fresh 15 / 48 channel= 19 48 / 19 fresh 19 /
+  50 channel=  8 50 /  8 fresh  8    / 58 channel= 12 58 / 12 fresh 12 / 42 channel= 16 42 / 16 fresh 16 /
+  57 channel= 25 57 / 25 fresh 25    / 41 channel= 31 41 / 31 fresh 31 / 49 channel= 37 49 / 37 fresh 37 /
+  51 channel= 20 51 / 20 fresh 20    / 59 channel= 26 59 / 26 fresh 26 / 43 channel= 32 43 / 32 fresh 32 /
+  53 channel= 22 53 / 22 fresh 22    / 61 channel= 28 61 / 28 fresh 28 / 45 channel= 34 45 / 34 fresh 34 /
+  39 channel= 29 39 / 29 fresh 29    / 47 channel= 35 47 / 35 fresh 35 / 55 channel= 23 55 / 23 fresh 23
+*
+^^ END PROCEDURE
+*
+* DEFINE ESTRATEGIA DE MOVIMIENTOS DE BARRA DE CONTROL (no incluye barra 8 y excluye barra 10)
+*
+*                        GESTION DE BAJADAS DE BARRAS
+*
+^^ PROCEDURE BAJA(NPOS):
+*
+* Movimiento de la barra de control 1
+*
+^^ LABEL BAJA_1:
+^^ MOVE CONTROL ROD   1     +%NPOS   CONTINUE AT BAJA_2 WHEN OUT OF RANGE 0 14
+^^ GOTO ENDBAJA
+*
+* Movimiento de la barra de control 2
+*
+^^ LABEL BAJA_2:
+^^ MOVE CONTROL ROD   ( 3  5  7)    +%NPOS +%NPOS +%NPOS CONTINUE AT BAJA_9 WHEN OUT OF RANGE 0 24
+^^ GOTO ENDBAJA
+*
+* Movimiento de la barra de control 9
+*
+^^ LABEL BAJA_9:
+^^ MOVE CONTROL ROD   (25 31 37)    +%NPOS +%NPOS +%NPOS CONTINUE AT BAJA_11 WHEN OUT OF RANGE 0 24
+^^ GOTO ENDBAJA
+*
+* Movimiento de la barra de control 11
+*
+^^ LABEL BAJA_11:
+^^ MOVE CONTROL ROD   (21 27 33)    +%NPOS +%NPOS +%NPOS CONTINUE AT BAJA_13 WHEN OUT OF RANGE 0 28
+^^ GOTO ENDBAJA
+*
+* Movimiento de la barra de control 13
+*
+^^ LABEL BAJA_13:
+^^ MOVE CONTROL ROD   (23 29 35)    +%NPOS +%NPOS +%NPOS CONTINUE AT BAJA_3 WHEN OUT OF RANGE 0 28
+^^ GOTO ENDBAJA
+*
+* Movimiento de la barra de control 3
+*
+^^ LABEL BAJA_3:
+^^ MOVE CONTROL ROD   ( 2  4  6)    +%NPOS +%NPOS +%NPOS
+^^ LABEL ENDBAJA:
+^^ END PROCEDURE
+*
+*
+*                        GESTION DE SUBIDAS DE BARRAS
+*
+^^ PROCEDURE SUBI(NPOS):
+*
+* Movimiento de la barra de control 3
+*
+^^ MOVE CONTROL ROD   ( 2  4  6)    -%NPOS -%NPOS -%NPOS CONTINUE AT SUBI_13 WHEN OUT OF RANGE 0 28
+^^ GOTO ENDSUBI
+*
+* Movimiento de la barra de control 13
+*
+^^ LABEL SUBI_13:
+^^ MOVE CONTROL ROD   (23 29 35)    -%NPOS -%NPOS -%NPOS CONTINUE AT SUBI_11 WHEN OUT OF RANGE 0 28
+^^ GOTO ENDSUBI
+*
+* Movimiento de la barra de control 11
+*
+^^ LABEL SUBI_11:
+^^ MOVE CONTROL ROD   (21 27 33)    -%NPOS -%NPOS -%NPOS CONTINUE AT SUBI_9 WHEN OUT OF RANGE 0 28
+^^ GOTO ENDSUBI
+*
+* Movimiento de la barra de control 9
+*
+^^ LABEL SUBI_9:
+^^ MOVE CONTROL ROD   (25 31 37)    -%NPOS -%NPOS -%NPOS CONTINUE AT SUBI_2  WHEN OUT OF RANGE 0 28
+^^ GOTO ENDSUBI
+*
+* Movimiento de la barra de control 2
+*
+^^ LABEL SUBI_2:
+^^ MOVE CONTROL ROD   ( 3  5  7)    -%NPOS -%NPOS -%NPOS CONTINUE AT SUBI_1 WHEN OUT OF RANGE 0 28
+^^ GOTO ENDSUBI
+*
+* Movimiento de la barra de control 1
+*
+^^ LABEL SUBI_1:
+^^ MOVE CONTROL ROD   1     -%NPOS
+*
+^^ LABEL ENDSUBI:
+^^ END PROCEDURE
+*
+*
+^^ procedure rcri:
+^^ output citation on
+^^ calculate
+^^ output TIME / control rod position / burnup / power density / fuel temperature / coolant temperature / coolant densities
+^^ end procedure
+*
+*
+^^ procedure rmax:
+^^ output citation on
+^^ move control rod ( 1 to  7 20 to 37) 0
+^^ calculate
+* ^^ output TIME / control rod position / burnup / power density / fuel temperature / coolant temperature / coolant densities
+^^ end procedure
+*
+*
