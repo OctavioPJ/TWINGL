@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../CAREM/.idea/Carem.iml" filepath="$PROJECT_DIR$/../CAREM/.idea/Carem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../PyCAR/.idea/PyCAR.iml" filepath="$PROJECT_DIR$/../PyCAR/.idea/PyCAR.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/TWINGL.iml" filepath="$PROJECT_DIR$/.idea/TWINGL.iml" />
     </modules>
   </component>
