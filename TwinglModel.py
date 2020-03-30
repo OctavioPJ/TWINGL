@@ -12,7 +12,13 @@ import subprocess
 class DirectEvolutionModel(DirectEvInterface):
 
     def run(self):
-        pass
+        try:
+            self._CV.run(executable='cittrs.exe')
+        except AssertionError:
+            time.sleep(2.0)
+            self._CV.run(executable='cittrs.exe')
+        subprocess.run(['caremdb', '-opt:export', '-val:meshflux', self.__database])
+        return
 
     def evolve(self, dt, *args, **kwargs):
         if self.Equilibrium:
@@ -41,22 +47,36 @@ class DirectEvolutionModel(DirectEvInterface):
         self.Flux_t = MeshFlux(self.__database+'.meshflux', self.Nx, self.Ny, self.Nz, self._NOG)
         return
 
-    def _init_flux(self):
+    def _init_flux(self, groups):
+        self._NOG = groups
         self.Flux_t = self.Flux_t_1 = \
             MeshFlux(self.__database.replace('S.cdb', '_eq.cdb.meshflux')
-                                               , self.Nx, self.Ny, self.Nz, self._NOG)
+                                               , *self.Geom.Cantidad_de_Nodos(), self._NOG)
+        self.Nx, self.Ny, self.Nz = self.Flux_t.shape[1:4]
+        return
+
+    def _init_citvap_model(self, BA):
+        self._CV = CitvapSourceModel(
+            file=self.__file,
+            sec4=self.__sec4,
+            sec5=self.__sec5,
+            mat=self.__mat,
+            sec26=self.__sec26,
+            GeometricType=self.__geo_type,
+            black_absorber=BA)
+
+        self._CV.PrintMeshMap()
+        self._CV.Calculate()
         return
 
     def _init_mesh_parameters(self):
-        self.Geom = Geometry(self.__file.replace('S.cii', '0.cii'))  # HARDCODEADO el *S.cii
+        self.Geom = Geometry(self.__file.replace('S.cii', '0.ci@'))  # HARDCODEADO el *S.cii
         self.Vmesh = self.Geom.Vmesh()
-        self.Nx, self.Ny, self.Nz = self.Geom.Cantidad_de_Nodos()
         return
 
-    def _init_parameters(self, _NuFissionMap, _KineticMap, _NoG):
+    def _init_parameters(self, _NuFissionMap, _KineticMap):
         self.NuFis = _NuFissionMap()
-        self.KM = _KineticMap(NPRC=self.nprc)
-        self._NOG = _NoG
+        self.KM = _KineticMap()
         self.BetaM = np.empty((1, self.Nx, self.Ny, self.Nz, self.nprc))
         self.LambdaM = np.empty((1, self.Nx, self.Ny, self.Nz, self.nprc))
         self.NuFisM = np.empty((1, self.Nx, self.Ny, self.Nz, self._NOG))
@@ -66,26 +86,52 @@ class DirectEvolutionModel(DirectEvInterface):
             for _y in range(self.Ny):
                 for _z in range(self.Nz):
                     meshmaterial = self.Geom.sc5[_x][_y][_z]
-                    KinParam = self.KM.MapMaterial(meshmaterial, NPRC=self.nprc)
+                    KinParam = self.KM.MapMaterial(meshmaterial)
                     self.BetaM[self.state][_x][_y][_z][:] = KinParam['Beta']
                     self.LambdaM[self.state][_x][_y][_z][:] = KinParam['Decays']
                     self.VelocityM[self.state][_x][_y][_z][:] = KinParam['Neutron Velocity']
                     self.NuFisM[self.state][_x][_y][_z][:] = self.NuFis.MapMaterial(meshmaterial)['XS'][:, 3]
 
-        self.react = self.__R0 = 173.0E-5
+        self.react = self.__R0 = -9251.1E-5
         self.keff = 1 / (1 - self.__R0)
         return 0
 
     def __init__(self, file, NuFissionMap, KineticMap,
                  WorkingDirectory,
+                 seccion_26, materiales, seccion_5, seccion_4,
                  state=0, nprc=1, groups=1,
                  Equilibrium=True,
-                 UseDerivative=False):
+                 UseDerivative=False,
+                 geo_type='TZ',
+                 black_absorber_ID=10):
+        """
 
+        :param file:
+        :param NuFissionMap:
+        :param KineticMap:
+        :param WorkingDirectory:
+        :param seccion_26:
+        :param materiales:
+        :param seccion_5:
+        :param seccion_4:
+        :param state:
+        :param nprc:
+        :param groups:
+        :param Equilibrium:
+        :param UseDerivative:
+        :param geo_type:
+        :param black_absorber_ID:
+        """
+        self.__geo_type = geo_type
+        self.__sec26 = seccion_26
+        self.__mat = materiales
+        self.__sec5 = seccion_5
+        self.__sec4 = seccion_4
         self.t = 0.0
         self.dt = 0.0
+        assert isinstance(state, int)
         self.state = state
-        self.chi_g = [1.0]
+        self.chi_g = [1.0, 0.0]
         self.__file = file
         self.Equilibrium = Equilibrium
         self.nprc = nprc
@@ -94,7 +140,7 @@ class DirectEvolutionModel(DirectEvInterface):
         self.__rootfile = self.__file.replace('.cii', '')
         self.__database = self.__file.replace('.cii', '.cdb')
         self.__p_parser = re.compile(r'POWER\(WATTS\) +([0-9]\.[0-9]{5}E\+[0-9]{2})')
-        self.Pt = 100
+        self.Pt = 1
         self._Q = {}
 
         self._C0 = self._Ct = self._Ct_1 = {self.state: {}}
@@ -102,10 +148,10 @@ class DirectEvolutionModel(DirectEvInterface):
         self.__UseDerivative = UseDerivative
         self.__datfile = r'source.dat'
 
-        # self._init_citvap_model()
         self._init_mesh_parameters()
-        self._init_parameters(NuFissionMap, KineticMap, groups)
-        self._init_flux()
+        self._init_flux(groups)
+        self._init_citvap_model(black_absorber_ID)
+        self._init_parameters(NuFissionMap, KineticMap)
         return
 
     @property
@@ -215,7 +261,7 @@ class DirectEvolutionModel(DirectEvInterface):
             self._CV.run(executable='pre_cit.exe')
 
         subprocess.run(['move', XSU_FILE, 'XSU_MOD\\'], shell=True)
-        os.chdir(self.WorkingDirectory+'\\XSU_MOD')
+        os.chdir(self.WorkingDirectory + 'XSU_MOD')
         if self.__UseDerivative:
             time_step = self.dt
         else:
@@ -223,11 +269,13 @@ class DirectEvolutionModel(DirectEvInterface):
         msg = subprocess.run(['neutyp', '{}'.format(XSU_FILE), str(self.Equilibrium),
                               *map(lambda a: '{:12.5E}'.format(round(a, ndigits=5)), [time_step, self.t])],
                              shell=True, capture_output=True)
-        assert msg.stderr in ['', b''], 'Error en la sobreescritura del archivo ROOT.XSU'
+        assert msg.stderr in ['', b''], 'Error en la sobreescritura del archivo ROOT.XSU\n' \
+                                        '{}'.format(msg.stderr.decode('utf-8'))
         os.chdir(self.WorkingDirectory)
         msg2 = subprocess.run(['move', '/Y', self.WorkingDirectory+'\\XSU_MOD\\{}'.format(XSU_FILE), XSU_FILE],
                               shell=True, capture_output=True)
-        assert msg2.stderr in ['', b''], 'Error en el movimiento del archivo ROOT.XSU'
+        assert msg2.stderr in ['', b''], 'Error en el movimiento del archivo ROOT.XSU\n' \
+                                         '{}'.format(msg2.stderr.decode('utf-8'))
         return msg
 
     def _get_power__(self, file=None):

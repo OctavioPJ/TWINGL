@@ -5,8 +5,6 @@ Created on Wed Feb  6 11:33:21 2019
 @author: CNEA
 """
 import sys
-
-if 'D:\\' not in sys.path: sys.path.append('D:\\')
 from PyCAR.PyCIT.lector_mest_posta import LoadCDP, get_reactivity_pro as grp
 from PyCAR.PyCIT.FT import MeshFlux
 from functools import reduce
@@ -64,7 +62,7 @@ if __name__ == '__main__':
     import numpy as np
     import re
 
-    os.chdir('D:\\TWINGL\\')
+    os.chdir('C:\\TWINGL\\')
     FILENAME = 'twigl.cii'
     ROOTFILE = FILENAME[:-4]
     DATABASE = ROOTFILE + '_eq.cdb'
