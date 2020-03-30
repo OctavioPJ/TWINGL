@@ -1,7 +1,7 @@
 from CAREM.Poinki import DirectEvInterface
 from CAREM.Citvap import CitvapSourceModel
 from PyCAR.PyCIT.FT import MeshFlux
-from PyCAR.PyCIT.lector_mest_posta import AddableDict, Geometry
+from PyCAR.PyCIT.lector_mest_posta import AddableDict, Geometry, LoadCDP
 import re
 import numpy as np
 import os
@@ -9,14 +9,52 @@ import time
 import subprocess
 
 
+class TWIGL_MAP(object):
+    def MapMaterial(self, meshmaterial):
+        attr = '_reg' + str(meshmaterial)
+        try:
+            return getattr(self, attr)[0][0.0]
+        except AttributeError:
+            return getattr(self, '_NULL')
+
+
+class Nu_Fission_Map(TWIGL_MAP):
+    wdir = 'C:\\TWINGL\\'
+
+    def __init__(self, **kwargs):
+        if 'wdir' in kwargs:
+            setattr(self, 'wdir', kwargs['wdir'])
+
+        wdir = getattr(self, 'wdir')
+        self._reg1 = LoadCDP(wdir + 'REGION1.cdp')
+        self._reg2 = LoadCDP(wdir + 'REGION2.cdp')
+        self._reg3 = LoadCDP(wdir + 'REGION3.cdp')
+
+        self._NULL = {'XS': np.zeros(self._reg3[0][0.0]['XS'].shape),
+                      'SM': np.zeros(self._reg3[0][0.0]['SM'].shape)}
+
+
+class Kinetic_Map(TWIGL_MAP):
+    def __init__(self):
+        v1 = 10 ** 7
+        v2 = 2 * (10 ** 5)
+        self._reg1 = self._reg2 = self._reg3 = {0: {0.0: {'Beta': np.array([0.0075]),
+                                                          'Decays': np.array([0.08]),
+                                                          'Neutron Velocity': np.array([1 / v1, 1 / v2])}}}
+
+        self._NULL = {'Beta': [0],
+                      'Decays': [0],
+                      'Neutron Velocity': [0, 0]}
+
+
 class DirectEvolutionModel(DirectEvInterface):
 
-    def run(self):
+    def run(self, Convergence_Criterion):
         try:
-            self._CV.run(executable='cittrs.exe')
+            self._CV.run(executable='cittrs.exe', epi_1=Convergence_Criterion)
         except AssertionError:
             time.sleep(2.0)
-            self._CV.run(executable='cittrs.exe')
+            self._CV.run(executable='cittrs.exe', epi_1=Convergence_Criterion)
         subprocess.run(['caremdb', '-opt:export', '-val:meshflux', self.__database])
         return
 
@@ -37,7 +75,7 @@ class DirectEvolutionModel(DirectEvInterface):
         self.source_to_file()
         self._send_to_lu_17__()
         self._xsu_mod__()
-        self.run()
+        self.run(self.FluxConvergence)
         self._get_power__()
 
         if self.Equilibrium:
@@ -103,7 +141,8 @@ class DirectEvolutionModel(DirectEvInterface):
                  Equilibrium=True,
                  UseDerivative=False,
                  geo_type='TZ',
-                 black_absorber_ID=10):
+                 black_absorber_ID=10,
+                 FluxConvergence=None):
         """
 
         :param file:
@@ -122,6 +161,10 @@ class DirectEvolutionModel(DirectEvInterface):
         :param geo_type:
         :param black_absorber_ID:
         """
+        if FluxConvergence is not None:
+            self.FluxConvergence = FluxConvergence
+        else:
+            self.FluxConvergence = 1.0E-6
         self.__geo_type = geo_type
         self.__sec26 = seccion_26
         self.__mat = materiales

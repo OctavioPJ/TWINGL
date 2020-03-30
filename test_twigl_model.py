@@ -1,53 +1,8 @@
 import unittest
-from TWINGL.TwinglModel import DirectEvolutionModel as Twigl
-import numpy as np
-from PyCAR.PyCIT.lector_mest_posta import LoadCDP, get_reactivity_pro as grp, Geometry
-from PyCAR.PyCIT.FT import MeshFlux
+from TWINGL.TwinglModel import DirectEvolutionModel as Twigl, Kinetic_Map, Nu_Fission_Map
 from glob import glob
 import os
 import subprocess
-
-BLACKABSORBER = 10
-DEFAULT_STATE = 0
-DEFAULT_BURNUP = 0
-
-
-class TWIGL_MAP(object):
-    def MapMaterial(self, meshmaterial):
-        attr = '_reg' + str(meshmaterial)
-        try:
-            return getattr(self, attr)[0][0.0]
-        except AttributeError:
-            return getattr(self, '_NULL')
-
-
-class Nu_Fission_Map(TWIGL_MAP):
-    wdir = 'C:\\TWINGL\\'
-
-    def __init__(self, **kwargs):
-        if 'wdir' in kwargs:
-            setattr(self, 'wdir', kwargs['wdir'])
-
-        wdir = getattr(self, 'wdir')
-        self._reg1 = LoadCDP(wdir + 'REGION1.cdp')
-        self._reg2 = LoadCDP(wdir + 'REGION2.cdp')
-        self._reg3 = LoadCDP(wdir + 'REGION3.cdp')
-
-        self._NULL = {'XS': np.zeros(self._reg3[0][0.0]['XS'].shape),
-                      'SM': np.zeros(self._reg3[0][0.0]['SM'].shape)}
-
-
-class Kinetic_Map(TWIGL_MAP):
-    def __init__(self):
-        v1 = 10 ** 7
-        v2 = 2 * (10 ** 5)
-        self._reg1 = self._reg2 = self._reg3 = {0: {0.0: {'Beta': np.array([0.0075]),
-                                                          'Decays': np.array([0.08]),
-                                                          'Neutron Velocity': np.array([1 / v1, 1 / v2])}}}
-
-        self._NULL = {'Beta': [0],
-                      'Decays': [0],
-                      'Neutron Velocity': [0, 0]}
 
 
 class TestTwingl(unittest.TestCase):
@@ -89,9 +44,11 @@ class TestTwingl(unittest.TestCase):
             if Directory not in glob('*'):
                 subprocess.run(['mkdir', Directory], shell=True)
             subprocess.run(['copy', '/Y', RootDirectory + Directory, Directory], shell=True)
+        return
 
     def test_eq_precrs(self):
         self.MODEL.equilibrium_precrs()
+        return
 
     def test_evolve(self):
         dt = 0.01
