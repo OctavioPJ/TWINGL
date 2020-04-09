@@ -1,7 +1,42 @@
 from TWINGL.TwinglModel import DirectEvolutionModel as Twigl, Kinetic_Map, Nu_Fission_Map
+from CAREM.Citvap import CitvapModel
+from PyCAR.PyCIT.FT import MeshFlux
 import os
 import numpy as np
 import subprocess
+from copy import deepcopy
+
+
+class Verification(Twigl):
+
+    def _init_citvap_model(self, file, seccion4, seccion5, materials, BA, geometry_type, seccion26):
+        super()._init_citvap_model(file, seccion4, seccion5, materials, BA, geometry_type, seccion26)
+        self._SCV = deepcopy(self._CV)
+        self._RCV = \
+            CitvapModel(file=file.replace('S.cii', '.cii'),
+                        sec4=seccion4,
+                        sec5=seccion5,
+                        mat=materials,
+                        GeometricType='XY',
+                        black_absorber=BA)
+        self._RCV.Calculate()
+        return
+
+    def CondenseBeta(self, file):
+        Flux_t = MeshFlux(file, self.Nx, self.Nz, self.Nz)
+        for nx in range(self.Nx):
+            # self._Ct[self.state][nx] = {}
+            for ny in range(self.Ny):
+                # self._Ct[self.state][nx][ny] = {}
+                for nz in range(self.Nz):
+                    FluxL = [self.Flux_t[self.state, nx, ny, nz, group] for group in range(self._NOG)]
+                    NuFisL = [self.NuFisM[self.state][nx][ny][nz][group] for group in range(self._NOG)]
+
+                    Bet_k = self.BetaM[self.state][nx][ny][nz]
+                    Lamb_k = self.LambdaM[self.state][nx][ny][nz]
+
+    pass  # Verification
+
 
 if __name__ == '__main__':
     os.chdir('C:\\TestD\\')

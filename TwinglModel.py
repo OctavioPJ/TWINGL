@@ -7,15 +7,17 @@ import numpy as np
 import os
 import time
 import subprocess
+from abc import ABC
 
 
-class TWIGL_MAP(object):
+class TWIGL_MAP(ABC):
     def MapMaterial(self, meshmaterial):
-        attr = '_reg' + str(meshmaterial)
-        try:
+        if meshmaterial in [1, 2, 3]:
+            attr = '_reg' + str(meshmaterial)
             return getattr(self, attr)[0][0.0]
-        except AttributeError:
-            return getattr(self, '_NULL')
+        else:
+            attr = '_NULL'
+        return getattr(self, attr)
 
 
 class Nu_Fission_Map(TWIGL_MAP):
@@ -68,7 +70,7 @@ class DirectEvolutionModel(DirectEvInterface):
             self.calculate_precrs(dt)
             self.t += dt
 
-        if self.__UseDerivative:
+        if self._UseDerivative:
             self.dt = dt
 
         self.calculate_source(dt)
@@ -89,18 +91,18 @@ class DirectEvolutionModel(DirectEvInterface):
         self._NOG = groups
         self.Flux_t = self.Flux_t_1 = \
             MeshFlux(self.__database.replace('S.cdb', '_eq.cdb.meshflux')
-                                               , *self.Geom.Cantidad_de_Nodos(), self._NOG)
+                                               , *self.Geom.Cantidad_de_Nodos(), Ng=self._NOG)
         self.Nx, self.Ny, self.Nz = self.Flux_t.shape[1:4]
         return
 
-    def _init_citvap_model(self, BA):
+    def _init_citvap_model(self, file, seccion4, seccion5, materials, BA, geometry_type, seccion26):
         self._CV = CitvapSourceModel(
-            file=self.__file,
-            sec4=self.__sec4,
-            sec5=self.__sec5,
-            mat=self.__mat,
-            sec26=self.__sec26,
-            GeometricType=self.__geo_type,
+            file=file,
+            sec4=seccion4,
+            sec5=seccion5,
+            mat=materials,
+            sec26=seccion26,
+            GeometricType=geometry_type,
             black_absorber=BA)
 
         self._CV.PrintMeshMap()
@@ -108,7 +110,7 @@ class DirectEvolutionModel(DirectEvInterface):
         return
 
     def _init_mesh_parameters(self):
-        self.Geom = Geometry(self.__file.replace('S.cii', '0.ci@'))  # HARDCODEADO el *S.cii
+        self.Geom = Geometry(self._file.replace('S.cii', '0.ci@'))  # HARDCODEADO el *S.cii
         self.Vmesh = self.Geom.Vmesh()
         return
 
@@ -119,6 +121,7 @@ class DirectEvolutionModel(DirectEvInterface):
         self.LambdaM = np.empty((1, self.Nx, self.Ny, self.Nz, self.nprc))
         self.NuFisM = np.empty((1, self.Nx, self.Ny, self.Nz, self._NOG))
         self.VelocityM = np.empty((1, self.Nx, self.Ny, self.Nz, self._NOG))
+        self.NuFissionRates = np.empty((1, self.Nx, self.Ny, self.Nz, self._NOG))
 
         for _x in range(self.Nx):
             for _y in range(self.Ny):
@@ -165,35 +168,36 @@ class DirectEvolutionModel(DirectEvInterface):
             self.FluxConvergence = FluxConvergence
         else:
             self.FluxConvergence = 1.0E-6
-        self.__geo_type = geo_type
-        self.__sec26 = seccion_26
-        self.__mat = materiales
-        self.__sec5 = seccion_5
-        self.__sec4 = seccion_4
+        self._geo_type = geo_type
+        self._sec26 = seccion_26
+        self._mat = materiales
+        self._sec5 = seccion_5
+        self._sec4 = seccion_4
+        self._BA = black_absorber_ID
         self.t = 0.0
         self.dt = 0.0
         assert isinstance(state, int)
         self.state = state
         self.chi_g = [1.0, 0.0]
-        self.__file = file
+        self._file = file
         self.Equilibrium = Equilibrium
         self.nprc = nprc
         self.WorkingDirectory = WorkingDirectory
 
-        self.__rootfile = self.__file.replace('.cii', '')
-        self.__database = self.__file.replace('.cii', '.cdb')
+        self._rootfile = self._file.replace('.cii', '')
+        self.__database = self._file.replace('.cii', '.cdb')
         self.__p_parser = re.compile(r'POWER\(WATTS\) +([0-9]\.[0-9]{5}E\+[0-9]{2})')
         self.Pt = 1
         self._Q = {}
 
         self._C0 = self._Ct = self._Ct_1 = {self.state: {}}
 
-        self.__UseDerivative = UseDerivative
+        self._UseDerivative = UseDerivative
         self.__datfile = r'source.dat'
 
         self._init_mesh_parameters()
         self._init_flux(groups)
-        self._init_citvap_model(black_absorber_ID)
+        self._init_citvap_model(self._file, self._sec4, self._sec5, self._mat, self._BA, self._geo_type, self._sec26)
         self._init_parameters(NuFissionMap, KineticMap)
         return
 
@@ -270,7 +274,7 @@ class DirectEvolutionModel(DirectEvInterface):
 
                         self._Q[group][self.state][nx][ny][nz] = \
                             self.chi_g[group] * sum([_Lmk[prc] * _C[prc] for prc in range(self.nprc)])
-                        if self.__UseDerivative:
+                        if self._UseDerivative:
                             self._Q[group][self.state][nx][ny][nz] +=\
                                 inv_V / dt * self.Flux_t_1[self.state, nx, ny, nz, group] * self.Vmesh
         return
@@ -290,13 +294,13 @@ class DirectEvolutionModel(DirectEvInterface):
         os.chdir(self.WorkingDirectory+'Source_To_LU17')
         msg = subprocess.run(['main.exe', *map(str, [self._NOG, self.Nx, self.Ny, self.Nz])]
                              , shell=True, capture_output=True)
-        msg2 = subprocess.run(['copy', '/Y', 'fort.17', '..\\' + self.__rootfile + '.src'],
+        msg2 = subprocess.run(['copy', '/Y', 'fort.17', '..\\' + self._rootfile + '.src'],
                               shell=True, capture_output=True)
         os.chdir(self.WorkingDirectory)
         return msg
 
     def _xsu_mod__(self):
-        XSU_FILE = '{}'.format(self.__rootfile + '.XSU')
+        XSU_FILE = '{}'.format(self._CV.RootFile + '.XSU')
         try:
             self._CV.run(executable='pre_cit.exe')
         except AssertionError:
@@ -305,7 +309,7 @@ class DirectEvolutionModel(DirectEvInterface):
 
         subprocess.run(['move', XSU_FILE, 'XSU_MOD\\'], shell=True)
         os.chdir(self.WorkingDirectory + 'XSU_MOD')
-        if self.__UseDerivative:
+        if self._UseDerivative:
             time_step = self.dt
         else:
             time_step = 0.0
@@ -323,7 +327,7 @@ class DirectEvolutionModel(DirectEvInterface):
 
     def _get_power__(self, file=None):
         if not file:
-            fid = open(self.__rootfile + '.cio', 'r')
+            fid = open(self._rootfile + '.cio', 'r')
         else:
             fid = open(file, 'r')
         self.Pt = float(self.__p_parser.findall(fid.read())[0])

@@ -78,7 +78,7 @@ if __name__ == '__main__':
 #     MainFile = 'twiglS.cii'
 #     NumberOfGroups = 1 # debería ser 2
 #     with self.assertRaises(AssertionError):
-#         Twigl(file=MainFile,
+#         Twigl(FluxFile=MainFile,
 #               KineticMap=Kinetic_Map,
 #               NuFissionMap=Nu_Fission_Map,
 #               groups=NumberOfGroups,
