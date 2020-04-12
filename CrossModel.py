@@ -7,20 +7,10 @@ import subprocess
 from copy import deepcopy
 
 
-class Verification(Twigl, CitvapModel):
-
-    def _init_citvap_model(self, file, seccion4, seccion5, materials, BA, geometry_type, seccion26):
-        super()._init_citvap_model(file, seccion4, seccion5, materials, BA, geometry_type, seccion26)
-        self._SCV = deepcopy(self._CV)
-        self._RCV = \
-            CitvapModel(file=file.replace('S.cii', '.cii'),
-                        seccion_4=seccion4,
-                        seccion_5=seccion5,
-                        materiales=materials,
-                        GeometricType='XY',
-                        black_absorber_ID=BA)
-        self._RCV.Calculate()
-        return
+class Verification(CitvapModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.Model = Twigl(*args, **kwargs)
 
     pass  # Verification
 

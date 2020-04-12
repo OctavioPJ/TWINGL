@@ -51,7 +51,7 @@ class Kinetic_Map(TWIGL_MAP):
 
 class DirectEvolutionModel(DirectEvInterface):
 
-    def run(self, Convergence_Criterion):
+    def run_tr(self, Convergence_Criterion):
         try:
             self._CV.run(executable='cittrs.exe', epi_1=Convergence_Criterion)
         except AssertionError:
@@ -77,7 +77,7 @@ class DirectEvolutionModel(DirectEvInterface):
         self.source_to_file()
         self._send_to_lu_17__()
         self._xsu_mod__()
-        self.run(self.FluxConvergence)
+        self.run_tr(self.FluxConvergence)
         self._get_power__()
 
         if self.Equilibrium:
@@ -143,9 +143,9 @@ class DirectEvolutionModel(DirectEvInterface):
                  state=0, nprc=1, groups=1,
                  Equilibrium=True,
                  UseDerivative=False,
-                 geo_type='TZ',
+                 GeometricType='TZ',
                  black_absorber_ID=10,
-                 FluxConvergence=None):
+                 FluxConvergence=None, *args, **kwargs):
         """
 
         :param file:
@@ -161,14 +161,14 @@ class DirectEvolutionModel(DirectEvInterface):
         :param groups:
         :param Equilibrium:
         :param UseDerivative:
-        :param geo_type:
+        :param GeometricType:
         :param black_absorber_ID:
         """
         if FluxConvergence is not None:
             self.FluxConvergence = FluxConvergence
         else:
             self.FluxConvergence = 1.0E-6
-        self._geo_type = geo_type
+        self._geo_type = GeometricType
         self._sec26 = seccion_26
         self._mat = materiales
         self._sec5 = seccion_5

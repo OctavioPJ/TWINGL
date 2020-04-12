@@ -22,8 +22,8 @@ class TestTwingl(unittest.TestCase):
                   seccion_4=MainFile.replace('S.cii', '.sc4'),
                   seccion_5=MainFile.replace('S.cii', '.sc5'),
                   seccion_26=MainFile.replace('S.cii', '.sc26'),
-                  materiales=MainFile.replace('S.cii', '.mat'),
-                  geo_type='XY',
+                  materiales=MainFile.replace('S.cii', '.materiales'),
+                  GeometricType='XY',
                   black_absorber_ID=10)
 
     def bring_in_files(self):
@@ -32,7 +32,7 @@ class TestTwingl(unittest.TestCase):
 
         RootDirectory = 'C:\\TWINGL\\'
         FilesToCopy = ['twiglS.cii', 'twigl.sc4', 'twigl.sc5',
-                       'twigl.sc26', 'twigl.mat', 'twigl0.ci@',
+                       'twigl.sc26', 'twigl.materiales', 'twigl0.ci@',
                        'twigl_eq.cdb.meshflux', 'twigl.bib']
 
         DirectoriesToCopy = ['XSU_MOD', 'Source_To_LU17']
@@ -87,6 +87,6 @@ if __name__ == '__main__':
 #               seccion_4=MainFile.replace('S.cii', '.sc4'),
 #               seccion_5=MainFile.replace('S.cii', '.sc5'),
 #               seccion_26=MainFile.replace('S.cii', '.sc26'),
-#               materiales=MainFile.replace('S.cii', '.mat'),
-#               geo_type='XY')
+#               materiales=MainFile.replace('S.cii', '.materiales'),
+#               GeometricType='XY')
 #     return 0
