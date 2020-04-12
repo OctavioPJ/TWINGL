@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c80ecd8d-4819-4b7e-89d5-4f11771b2ce1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/BetaCondensed.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CAREM/Analisis_Estacionarios.py" beforeDir="false" afterPath="$PROJECT_DIR$/../CAREM/Analisis_Estacionarios.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CAREM/Poinki.py" beforeDir="false" afterPath="$PROJECT_DIR$/../CAREM/Poinki.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/TWINGL.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TWINGL.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Twigl_Implement.py" beforeDir="false" afterPath="$PROJECT_DIR$/Twigl_Implement.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TwinglModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/TwinglModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_twigl_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_twigl_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetaCondensed.py" beforeDir="false" afterPath="$PROJECT_DIR$/BetaCondensed.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +30,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
-    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="GithubPullRequestsUISettings">
     <option name="hiddenUrls">
@@ -43,7 +44,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -61,6 +61,9 @@
       <module name="TWINGL" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -106,6 +109,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_twigl_model.TestTwingl.test_eq_precrs&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
@@ -121,6 +125,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_twigl_model.TestTwingl.test_evolve&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
@@ -136,14 +141,15 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_twigl_model.TestTwingl.test_geometry_processing&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.twigl" />
       <item itemvalue="Python.BetaCondensed" />
+      <item itemvalue="Python.twigl" />
       <item itemvalue="Python tests.pytest for test_twigl_model.TestTwingl.test_eq_precrs" />
       <item itemvalue="Python tests.pytest for test_twigl_model.TestTwingl.test_evolve" />
       <item itemvalue="Python tests.pytest for test_twigl_model.TestTwingl.test_geometry_processing" />
@@ -157,18 +163,6 @@
         <item itemvalue="Python tests.pytest for test_twigl_model.TestTwingl.test_eq_precrs" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -223,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585544313515</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Se agrega Beta Condensed">
+      <created>1586415166622</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1586415166622</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -231,7 +232,8 @@
     <MESSAGE value="Segundo commit dentro del branch Class Implementation, directamente se hace un nuevo archivo llamado TwinglModel, dios sabe xq se borró el archivo anterior" />
     <MESSAGE value="Se agrega el archivo para testeo previo (sobre un nuevo directorio C:\\TestD) y cambios hechos en el modelo, hasta aquí se verifica el correcto funcionamiento de la evolución temporal (Falta hacer un commit en el modelo de citvap, hubo que hacerse un par de cambios" />
     <MESSAGE value="Twigl_Implement.py mas base de datos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Twigl_Implement.py mas base de datos" />
+    <MESSAGE value="Se agrega Beta Condensed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se agrega Beta Condensed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1585439454191">
@@ -250,66 +252,66 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="235" y="226" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1585539290820" />
-    <state x="614" y="114" width="940" height="811" key="CommitChangelistDialog2" timestamp="1585544312859">
+    <state x="614" y="114" width="940" height="811" key="CommitChangelistDialog2" timestamp="1586415165715">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="614" y="114" width="940" height="811" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585544312859" />
+    <state x="614" y="114" width="940" height="811" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586415165715" />
     <state x="184" y="86" key="DiffContextDialog" timestamp="1585439805361">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585439805361" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1585584311175">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1586651094015">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1585584311175" />
-    <state width="936" height="434" key="GridCell.Tab.0.bottom" timestamp="1586413448725">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1586651094015" />
+    <state width="936" height="434" key="GridCell.Tab.0.bottom" timestamp="1586415213611">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="936" height="434" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586413448725" />
-    <state width="936" height="434" key="GridCell.Tab.0.center" timestamp="1586413448725">
+    <state width="936" height="434" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586415213611" />
+    <state width="936" height="434" key="GridCell.Tab.0.center" timestamp="1586415213611">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="936" height="434" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586413448725" />
-    <state width="936" height="434" key="GridCell.Tab.0.left" timestamp="1586413448725">
+    <state width="936" height="434" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586415213611" />
+    <state width="936" height="434" key="GridCell.Tab.0.left" timestamp="1586415213611">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="936" height="434" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586413448725" />
-    <state width="936" height="434" key="GridCell.Tab.0.right" timestamp="1586413448725">
+    <state width="936" height="434" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586415213611" />
+    <state width="936" height="434" key="GridCell.Tab.0.right" timestamp="1586415213611">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="936" height="434" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586413448725" />
-    <state width="936" height="434" key="GridCell.Tab.1.bottom" timestamp="1586413448725">
+    <state width="936" height="434" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586415213611" />
+    <state width="936" height="434" key="GridCell.Tab.1.bottom" timestamp="1586415213611">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="936" height="434" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586413448725" />
-    <state width="936" height="434" key="GridCell.Tab.1.center" timestamp="1586413448725">
+    <state width="936" height="434" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586415213611" />
+    <state width="936" height="434" key="GridCell.Tab.1.center" timestamp="1586415213611">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="936" height="434" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586413448725" />
-    <state width="936" height="434" key="GridCell.Tab.1.left" timestamp="1586413448725">
+    <state width="936" height="434" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586415213611" />
+    <state width="936" height="434" key="GridCell.Tab.1.left" timestamp="1586415213611">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="936" height="434" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586413448725" />
-    <state width="936" height="434" key="GridCell.Tab.1.right" timestamp="1586413448725">
+    <state width="936" height="434" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586415213611" />
+    <state width="936" height="434" key="GridCell.Tab.1.right" timestamp="1586415213611">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="936" height="434" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586413448725" />
+    <state width="936" height="434" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586415213611" />
     <state x="672" y="236" key="MultipleFileMergeDialog" timestamp="1585439848975">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="672" y="236" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585439848975" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1585544324398">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1586415194837">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1585544324398" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586415194837" />
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1585438997132">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585438997132" />
-    <state x="1136" y="607" key="com.intellij.ide.util.TipDialog" timestamp="1586194767206">
+    <state x="1136" y="607" key="com.intellij.ide.util.TipDialog" timestamp="1586448538112">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1136" y="607" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586194767206" />
+    <state x="1136" y="607" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586448538112" />
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585439902349">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -318,10 +320,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="51" y="259" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040@0.0.1920.1040" timestamp="1585521092576" />
-    <state x="953" y="0" width="974" height="1047" key="dock-window-1" timestamp="1586413693899">
+    <state x="953" y="0" width="974" height="1047" key="dock-window-1" timestamp="1586652208218">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="953" y="0" width="974" height="1047" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1586413693899" />
+    <state x="953" y="0" width="974" height="1047" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1586652208218" />
     <state x="953" y="0" width="974" height="1047" key="dock-window-2" timestamp="1585524822986">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -334,24 +336,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="761" y="311" key="git4idea.merge.GitMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585439831486" />
-    <state x="687" y="311" key="git4idea.merge.GitPullDialog" timestamp="1585539693950">
+    <state x="687" y="311" key="git4idea.merge.GitPullDialog" timestamp="1586651745620">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="687" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585539693950" />
+    <state x="687" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586651745620" />
     <state x="701" y="163" key="refactoring.ChangeSignatureDialog" timestamp="1585183932053">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="701" y="163" key="refactoring.ChangeSignatureDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585183932053" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/BetaCondensed.py</url>
-          <line>37</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

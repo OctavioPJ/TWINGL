@@ -1,6 +1,6 @@
 import numpy as np
 from PyCAR.PyCIT.FT import MeshFlux
-from TwinglModel import Nu_Fission_Map, Kinetic_Map
+from TWINGL.TwinglModel import Nu_Fission_Map, Kinetic_Map
 from PyCAR.PyCIT.lector_mest_posta import Geometry
 
 
@@ -32,11 +32,14 @@ def BetaCalculator(FluxFile, Nx, Ny, Nz, Ng, GeometryFile):
 
                 OneGroupFlux[x, y, z] = Flux[0, x, y, z, :].sum()
                 OneGroupFiss[x, y, z] = FissionRates[x, y, z, :].sum()
-                DelayedFiss[x, y, z] = 0.0075 * FissionRates[x, y, z, :].sum() * Flux[0, x, y, z, :].sum()  # segun otto, esta formula estaría bien, dios sabrá
+                DelayedFiss[x, y, z] = 0.0075 * FissionRates[x, y, z, :].sum() * Flux[0, x, y, z, :].sum()
+                # segun otto, esta formula estaría bien, dios sabrá
                 OneGroupVel[x, y, z] = VelocityRates[x, y, z, :].sum()
 
-    Lambda = ((OneGroupVel * OneGroupFlux).sum() / (OneGroupFiss * OneGroupFlux).sum())
-    Beta = DelayedFiss.sum() / (OneGroupFiss * OneGroupFlux).sum()
+    Lambda = ((OneGroupVel * OneGroupFlux).sum() /
+              (OneGroupFiss * OneGroupFlux).sum())
+    Beta = DelayedFiss.sum() /\
+           (OneGroupFiss * OneGroupFlux).sum()
     return Beta, Lambda
 
 

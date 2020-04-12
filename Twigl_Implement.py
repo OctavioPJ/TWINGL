@@ -22,19 +22,6 @@ class Verification(Twigl):
         self._RCV.Calculate()
         return
 
-    def CondenseBeta(self, file):
-        Flux_t = MeshFlux(file, self.Nx, self.Nz, self.Nz)
-        for nx in range(self.Nx):
-            # self._Ct[self.state][nx] = {}
-            for ny in range(self.Ny):
-                # self._Ct[self.state][nx][ny] = {}
-                for nz in range(self.Nz):
-                    FluxL = [self.Flux_t[self.state, nx, ny, nz, group] for group in range(self._NOG)]
-                    NuFisL = [self.NuFisM[self.state][nx][ny][nz][group] for group in range(self._NOG)]
-
-                    Bet_k = self.BetaM[self.state][nx][ny][nz]
-                    Lamb_k = self.LambdaM[self.state][nx][ny][nz]
-
     pass  # Verification
 
 
