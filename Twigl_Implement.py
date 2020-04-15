@@ -9,16 +9,16 @@ from copy import deepcopy
 
 class Verification(Twigl, CitvapModel):
 
-    def _init_citvap_model(self, file, seccion4, seccion5, materials, BA, geometry_type, seccion26):
-        super()._init_citvap_model(file, seccion4, seccion5, materials, BA, geometry_type, seccion26)
+    def _init_citvap_model(self, file, seccion_4, seccion_5, materiales, black_absorber_ID, GeometryType, seccion_26):
+        super()._init_citvap_model(file, seccion_4, seccion_5, materiales, black_absorber_ID, GeometryType, seccion_26)
         self._SCV = deepcopy(self._CV)
         self._RCV = \
             CitvapModel(file=file.replace('S.cii', '.cii'),
-                        seccion_4=seccion4,
-                        seccion_5=seccion5,
-                        materiales=materials,
+                        seccion_4=seccion_4,
+                        seccion_5=seccion_5,
+                        materiales=materiales,
                         GeometricType='XY',
-                        black_absorber_ID=BA)
+                        black_absorber_ID=black_absorber_ID)
         self._RCV.Calculate()
         return
 

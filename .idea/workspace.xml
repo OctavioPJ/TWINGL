@@ -24,22 +24,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c80ecd8d-4819-4b7e-89d5-4f11771b2ce1" name="Default Changelist" comment="Se saca un atributo de la clase poinky que estaba al pedo">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/U.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CrossModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CAREM/Citvap.py" beforeDir="false" afterPath="$PROJECT_DIR$/../CAREM/Citvap.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CAREM/Evolution.py" beforeDir="false" afterPath="$PROJECT_DIR$/../CAREM/Evolution.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CAREM/Evolution_FixedPoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/../CAREM/Evolution_FixedPoint.py" afterDir="false" />
+    <list default="true" id="c80ecd8d-4819-4b7e-89d5-4f11771b2ce1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/LinearModel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CAREM/Poinki.py" beforeDir="false" afterPath="$PROJECT_DIR$/../CAREM/Poinki.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CAREM/carem_fuels.py" beforeDir="false" afterPath="$PROJECT_DIR$/../CAREM/carem_fuels.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CAREM/poinki_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../CAREM/poinki_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CAREM/scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/../CAREM/scratch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CAREM/scratch_anda.py" beforeDir="false" afterPath="$PROJECT_DIR$/../CAREM/scratch_anda.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CAREM/test_norm_qz.py" beforeDir="false" afterPath="$PROJECT_DIR$/../CAREM/test_norm_qz.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CrossModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/CrossModel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Twigl_Implement.py" beforeDir="false" afterPath="$PROJECT_DIR$/Twigl_Implement.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TwinglModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/TwinglModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_twigl_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_twigl_model.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +47,8 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ClassImplement" />
+        <entry key="$PROJECT_DIR$/../CAREM" value="master" />
+        <entry key="$PROJECT_DIR$" value="linre" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -82,7 +74,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../CAREM" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -93,18 +85,18 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\CAREM" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\TWINGL" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.CrossModel">
+  <component name="RunManager" selected="Python.LinearModel">
     <configuration name="BetaCondensed" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TWINGL" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -119,61 +111,54 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="CrossModel" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Carem" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CrossModel.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="scratch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Carem" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="twigl" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="LinearModel" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TWINGL" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/twigl.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LinearModel.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_linear_model.TestLinear.test_evol_lmodel" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Carem" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../CAREM" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_linear_model.TestLinear.test_evol_lmodel&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_linear_model.TestLinear.test_init_lmodel" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Carem" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../CAREM" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_linear_model.TestLinear.test_init_lmodel&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="pytest for test_twigl_model.TestTwingl.test_evolve" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
@@ -194,18 +179,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.BetaCondensed" />
-      <item itemvalue="Python.twigl" />
-      <item itemvalue="Python.scratch" />
-      <item itemvalue="Python.CrossModel" />
+      <item itemvalue="Python.LinearModel" />
       <item itemvalue="Python tests.pytest for test_twigl_model.TestTwingl.test_evolve" />
+      <item itemvalue="Python tests.pytest for test_linear_model.TestLinear.test_init_lmodel" />
+      <item itemvalue="Python tests.pytest for test_linear_model.TestLinear.test_evol_lmodel" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.CrossModel" />
-        <item itemvalue="Python.scratch" />
+        <item itemvalue="Python.LinearModel" />
+        <item itemvalue="Python tests.pytest for test_linear_model.TestLinear.test_evol_lmodel" />
+        <item itemvalue="Python tests.pytest for test_linear_model.TestLinear.test_init_lmodel" />
         <item itemvalue="Python.BetaCondensed" />
         <item itemvalue="Python tests.pytest for test_twigl_model.TestTwingl.test_evolve" />
-        <item itemvalue="Python.twigl" />
       </list>
     </recent_temporary>
   </component>
@@ -276,7 +261,28 @@
       <option name="project" value="LOCAL" />
       <updated>1586652877170</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Se saca un atributo de la clase poinky que estaba al pedo">
+      <created>1586666874667</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1586666874667</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Se añade el comienzo del CrossedModel para hacer una verificación del modelo de cinetica con reactividad lineal, se cambian algunos parametros de las funciones necesarias para que matcheen con los argumentos de CITVAPMODEL">
+      <created>1586667071660</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1586667071660</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Se añade test_linear_model.py y se agrega el modelo lineal a Poinki.py">
+      <created>1586926268460</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1586926268460</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -289,6 +295,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Primer commit dentro del branch Class Implementation, directamente se hace un nuevo archivo llamado TwinglModel" />
@@ -297,89 +304,99 @@
     <MESSAGE value="Twigl_Implement.py mas base de datos" />
     <MESSAGE value="Se agrega Beta Condensed" />
     <MESSAGE value="Se saca un atributo de la clase poinky que estaba al pedo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se saca un atributo de la clase poinky que estaba al pedo" />
+    <MESSAGE value="Se añade el comienzo del CrossedModel para hacer una verificación del modelo de cinetica con reactividad lineal, se cambian algunos parametros de las funciones necesarias para que matcheen con los argumentos de CITVAPMODEL" />
+    <MESSAGE value="Se añade test_linear_model.py y se agrega el modelo lineal a Poinki.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se añade test_linear_model.py y se agrega el modelo lineal a Poinki.py" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1585439454191">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1585439454191" />
-    <state x="0" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586657118318">
+    <state x="0" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586926666548">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="0" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586657118318" />
+    <state x="0" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586926666548" />
     <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1585182866804">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1585182866804" />
+    <state x="882" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1586898483798">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="882" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586898483798" />
     <state x="301" y="276" key="#xdebugger.XInspectDialog" timestamp="1586656519143">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="301" y="276" key="#xdebugger.XInspectDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586656519143" />
-    <state x="235" y="226" key="#xdebugger.evaluate" timestamp="1585539290820">
+    <state x="946" y="0" width="974" height="1040" key="#xdebugger.evaluate" timestamp="1586930565150">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="235" y="226" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1585539290820" />
+    <state x="946" y="0" width="974" height="1040" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1586930565150" />
     <state x="707" y="385" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1586656854390">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="707" y="385" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1586656854390" />
-    <state x="614" y="114" width="940" height="811" key="CommitChangelistDialog2" timestamp="1586652836635">
+    <state x="614" y="114" width="940" height="811" key="CommitChangelistDialog2" timestamp="1586926267442">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="614" y="114" width="940" height="811" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586652836635" />
+    <state x="614" y="114" width="940" height="811" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586926267442" />
     <state x="184" y="86" key="DiffContextDialog" timestamp="1585439805361">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585439805361" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1586651094015">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1586929444408">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1586651094015" />
-    <state width="1899" height="279" key="GridCell.Tab.0.bottom" timestamp="1586657122130">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1586929444408" />
+    <state width="1899" height="317" key="GridCell.Tab.0.bottom" timestamp="1586930761814">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586657122130" />
-    <state width="1899" height="279" key="GridCell.Tab.0.center" timestamp="1586657122130">
+    <state width="1899" height="317" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586930761814" />
+    <state width="1899" height="317" key="GridCell.Tab.0.center" timestamp="1586930761814">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="279" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586657122130" />
-    <state width="1899" height="279" key="GridCell.Tab.0.left" timestamp="1586657122130">
+    <state width="1899" height="317" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586930761814" />
+    <state width="1899" height="317" key="GridCell.Tab.0.left" timestamp="1586930761814">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="279" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586657122130" />
-    <state width="1899" height="279" key="GridCell.Tab.0.right" timestamp="1586657122130">
+    <state width="1899" height="317" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586930761814" />
+    <state width="1899" height="317" key="GridCell.Tab.0.right" timestamp="1586930761814">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="279" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586657122130" />
-    <state width="936" height="434" key="GridCell.Tab.1.bottom" timestamp="1586415213611">
+    <state width="1899" height="317" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586930761814" />
+    <state width="1899" height="317" key="GridCell.Tab.1.bottom" timestamp="1586930761814">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="936" height="434" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586415213611" />
-    <state width="936" height="434" key="GridCell.Tab.1.center" timestamp="1586415213611">
+    <state width="1899" height="317" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586930761814" />
+    <state width="1899" height="317" key="GridCell.Tab.1.center" timestamp="1586930761814">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="936" height="434" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586415213611" />
-    <state width="936" height="434" key="GridCell.Tab.1.left" timestamp="1586415213611">
+    <state width="1899" height="317" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586930761814" />
+    <state width="1899" height="317" key="GridCell.Tab.1.left" timestamp="1586930761814">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="936" height="434" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586415213611" />
-    <state width="936" height="434" key="GridCell.Tab.1.right" timestamp="1586415213611">
+    <state width="1899" height="317" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586930761814" />
+    <state width="1899" height="317" key="GridCell.Tab.1.right" timestamp="1586930761814">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="936" height="434" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586415213611" />
+    <state width="1899" height="317" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586930761814" />
     <state x="672" y="236" key="MultipleFileMergeDialog" timestamp="1585439848975">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="672" y="236" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585439848975" />
-    <state x="461" y="165" key="SettingsEditor" timestamp="1586656739235">
+    <state x="461" y="165" key="SettingsEditor" timestamp="1586916357950">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586656739235" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1586415194837">
+    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586916357950" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1586667093693">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586415194837" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586667093693" />
+    <state width="487" height="263" key="XDebugger.FullValuePopup" timestamp="1586929768369">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="487" height="263" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1586929768369" />
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1585438997132">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -396,10 +413,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="51" y="259" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040@0.0.1920.1040" timestamp="1585521092576" />
-    <state x="953" y="0" width="974" height="1047" key="dock-window-1" timestamp="1586652208218">
+    <state x="953" y="0" width="974" height="1047" key="dock-window-1" timestamp="1586924103209">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="953" y="0" width="974" height="1047" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1586652208218" />
+    <state x="953" y="0" width="974" height="1047" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1586924103209" />
     <state x="953" y="0" width="974" height="1047" key="dock-window-2" timestamp="1585524822986">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -412,13 +429,42 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="761" y="311" key="git4idea.merge.GitMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585439831486" />
-    <state x="687" y="311" key="git4idea.merge.GitPullDialog" timestamp="1586651745620">
+    <state x="687" y="311" key="git4idea.merge.GitPullDialog" timestamp="1586667080320">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="687" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586651745620" />
-    <state x="701" y="163" key="refactoring.ChangeSignatureDialog" timestamp="1585183932053">
+    <state x="687" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586667080320" />
+    <state x="701" y="163" key="refactoring.ChangeSignatureDialog" timestamp="1586914011818">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="701" y="163" key="refactoring.ChangeSignatureDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585183932053" />
+    <state x="701" y="163" key="refactoring.ChangeSignatureDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586914011818" />
+    <state x="1103" y="100" key="search.everywhere.popup" timestamp="1586908055200">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1103" y="100" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1586908055200" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/BetaCondensed.py</url>
+          <line>18</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/BetaCondensed.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="notalf.U0" language="Python" />
+        <watch expression="self.U0" language="Python" />
+        <watch expression="self.Ut" language="Python" />
+        <watch expression="Ro[n]*1E5" language="Python" />
+        <watch expression="notalf.Ut" language="Python" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

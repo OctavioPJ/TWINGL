@@ -51,7 +51,7 @@ class Kinetic_Map(TWIGL_MAP):
 
 class DirectEvolutionModel(DirectEvInterface):
 
-    def run_tr(self, Convergence_Criterion):
+    def run_transient(self, Convergence_Criterion):
         try:
             self._CV.run(executable='cittrs.exe', epi_1=Convergence_Criterion)
         except AssertionError:
@@ -76,8 +76,15 @@ class DirectEvolutionModel(DirectEvInterface):
         self.calculate_source(dt)
         self.source_to_file()
         self._send_to_lu_17__()
+
+        try:
+            self._CV.run(executable='pre_cit.exe')
+        except AssertionError:
+            time.sleep(2.0)
+            self._CV.run(executable='pre_cit.exe')
+
         self._xsu_mod__()
-        self.run_tr(self.FluxConvergence)
+        self.run_transient(self.FluxConvergence)
         self._get_power__()
 
         if self.Equilibrium:
@@ -95,15 +102,16 @@ class DirectEvolutionModel(DirectEvInterface):
         self.Nx, self.Ny, self.Nz = self.Flux_t.shape[1:4]
         return
 
-    def _init_citvap_model(self, file, seccion4, seccion5, materials, BA, geometry_type, seccion26):
+    def _init_citvap_model(self, file, seccion_4, seccion_5, materiales,
+                           black_absorber_ID, GeometryType, seccion_26):
         self._CV = CitvapSourceModel(
             file=file,
-            sec4=seccion4,
-            sec5=seccion5,
-            mat=materials,
-            sec26=seccion26,
-            GeometricType=geometry_type,
-            black_absorber=BA)
+            seccion_4=seccion_4,
+            seccion_5=seccion_5,
+            materiales=materiales,
+            seccion_26=seccion_26,
+            GeometricType=GeometryType,
+            black_absorber_ID=black_absorber_ID)
 
         self._CV.PrintMeshMap()
         self._CV.Calculate()
@@ -299,20 +307,22 @@ class DirectEvolutionModel(DirectEvInterface):
         os.chdir(self.WorkingDirectory)
         return msg
 
-    def _xsu_mod__(self):
-        XSU_FILE = '{}'.format(self._CV.RootFile + '.XSU')
-        try:
-            self._CV.run(executable='pre_cit.exe')
-        except AssertionError:
-            time.sleep(2.0)
-            self._CV.run(executable='pre_cit.exe')
+    def _xsu_mod__(self, NoDerivative=False, OutsideFile=None):
 
+        if not OutsideFile:
+            XSU_FILE = '{}'.format(self._CV.RootFile + '.XSU')
+        else:
+            XSU_FILE = OutsideFile
         subprocess.run(['move', XSU_FILE, 'XSU_MOD\\'], shell=True)
         os.chdir(self.WorkingDirectory + 'XSU_MOD')
-        if self._UseDerivative:
+
+        if NoDerivative:
+            time_step = 0.0
+        elif self._UseDerivative:
             time_step = self.dt
         else:
             time_step = 0.0
+
         msg = subprocess.run(['neutyp', '{}'.format(XSU_FILE), str(self.Equilibrium),
                               *map(lambda a: '{:12.5E}'.format(round(a, ndigits=5)), [time_step, self.t])],
                              shell=True, capture_output=True)
